@@ -13,7 +13,7 @@ package Inventario;
 import java.util.ArrayList;
 
 public class CatalogoProducto {
-    ArrayList<Producto> productos;
+    private ArrayList<Producto> productos;
 
     public ArrayList<Producto> getProductos() {
         return productos;

@@ -12,10 +12,12 @@ import java.io.File;
  * @author copec
  */
 public class ManejadorArchivo {
-    File archivo;
+    
+    private File archivo;
     
     public void escribeLinea(String linea){}
     public String leerLinea(){return null;}
     public void cerrarArchivo(){}
+    
     public ManejadorArchivo(String nombreArchivo){}
 }

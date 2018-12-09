@@ -10,6 +10,7 @@ package Inventario;
  * @author copec
  */
 public class MaterialDeCuracion extends Producto{
+    
     private String clasificacion;
 
     public String getClasificacion() {
@@ -20,5 +21,6 @@ public class MaterialDeCuracion extends Producto{
         this.clasificacion = clasificacion;
     }
     
-    
+    @Override
+    public String serializa(){return null;}
 }

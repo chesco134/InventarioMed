@@ -67,5 +67,5 @@ public abstract class Producto {
         this.dimension = dimension;
     }
     
-    public String serializa(){return null;}
+    public abstract String serializa();
 }

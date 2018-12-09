@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author copec
  */
-public class Inventario {
+public class Inventario implements Serializa{
     private java.util.ArrayList<Estante> estantes;
     private String direccion;
 
@@ -33,4 +33,9 @@ public class Inventario {
     
     public void obtenerEstantesConEspacioLibre(){}
     public Inventario crearInventario(String linea){return null;}
+
+    @Override
+    public String serializa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

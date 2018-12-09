@@ -22,4 +22,5 @@ public abstract class Usuario {
     public String getPass(){return null;}
     public Usuario(String nombre, String pass){}
     public abstract String serializa();
+    public abstract Usuario deserializa();
 }

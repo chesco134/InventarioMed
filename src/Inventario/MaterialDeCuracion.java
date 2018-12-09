@@ -23,4 +23,16 @@ public class MaterialDeCuracion extends Producto{
     
     @Override
     public String serializa(){return null;}
+    
+    public static MaterialDeCuracion deserializa(String linea){
+        try{
+            JSONObject json = new JSONObject(linea);
+            MaterialDeCuracion materialDeCuracion = new MaterialDeCuracion();
+            materialDeCuracion.setClasificacion(json.getString("clasificacion"));
+            materialDeCuracion.setDescripcion(json.getString("descripcion"));
+            // materialDeCuracion.setDimension(new Dimension());
+        }catch(JSONException e){
+            return null;
+        }
+    }
 }

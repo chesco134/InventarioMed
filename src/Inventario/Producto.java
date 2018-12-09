@@ -68,4 +68,7 @@ public abstract class Producto {
     }
     
     public abstract String serializa();
+    
+    // Lo necesitas sobreescribir
+    public static Producto deserializa(String linea){return null;}
 }

@@ -9,7 +9,7 @@ package Inventario;
  *
  * @author copec
  */
-public class Medicamento {
+public class Medicamento extends Producto{
     private String especificacion;
 
     public String getEspecificacion() {
@@ -18,6 +18,11 @@ public class Medicamento {
 
     public void setEspecificacion(String especificacion) {
         this.especificacion = especificacion;
+    }
+
+    @Override
+    public String serializa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

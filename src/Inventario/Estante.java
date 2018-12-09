@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author copec
  */
-public class Estante {
+public class Estante implements Serializa{
     private String nombre;
     private java.util.ArrayList<Slot> slots;
     private String descripcion;
@@ -45,4 +45,9 @@ public class Estante {
     public Estante(String nombre, int cantidadSlots, int espacioPorSlot){}
     public boolean agregarProducto(ProductoAgregado producto){return false;}
     public Estante crearEstante(String linea){return null;}
+
+    @Override
+    public String serializa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

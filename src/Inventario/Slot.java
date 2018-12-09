@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author copec
  */
-public class Slot {
+public class Slot implements Serializa{
     private int index;
     private int espacio;
     private java.util.ArrayList<ProductoAgregado> productos;
@@ -50,4 +50,9 @@ public class Slot {
     }
     
     public Slot creaSlot(String linea){return null;}
+
+    @Override
+    public String serializa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

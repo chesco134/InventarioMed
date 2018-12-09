@@ -9,7 +9,7 @@ package Inventario;
  *
  * @author copec
  */
-public class ProductoAgregado {
+public class ProductoAgregado implements Serializa{
     private Producto producto;
     private String nombreOperador;
     
@@ -32,4 +32,9 @@ public class ProductoAgregado {
     }
     
     public ProductoAgregado creaProductoAgregado(String linea){return null;}
+
+    @Override
+    public String serializa() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -161,7 +161,7 @@ public class ConsultorFrame extends javax.swing.JFrame {
                                         .addComponent(etiquetaEstante))
                                     .addGap(25, 25, 25)))
                             .addComponent(jLabel1))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         agregarProductosPanelLayout.setVerticalGroup(
             agregarProductosPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

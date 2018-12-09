@@ -14,6 +14,8 @@ import java.io.File;
 public class ManejadorArchivo {
     
     private File archivo;
+    private java.io.PrintWriter pw;
+    private java.io.BufferedReader br;
     
     public void escribeLinea(String linea){}
     public String leerLinea(){return null;}

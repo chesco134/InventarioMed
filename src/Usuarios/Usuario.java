@@ -21,5 +21,5 @@ public abstract class Usuario {
     public String getNombre(){return null;}
     public String getPass(){return null;}
     public Usuario(String nombre, String pass){}
-    public String serializa(){return null;}
+    public abstract String serializa();
 }

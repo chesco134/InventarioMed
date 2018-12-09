@@ -10,8 +10,8 @@ package Managers;
  * @author copec
  */
 public class ManejadorInventario {
-    Inventario.Inventario inventario;
-    ManejadorArchivo manejadorArchivo;
+    private Inventario.Inventario inventario;
+    private ManejadorArchivo manejadorArchivo;
     
     public void guardaInventario(){}
     public void cargaInventario(){}

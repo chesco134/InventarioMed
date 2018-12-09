@@ -13,10 +13,10 @@ package Usuarios;
 import Managers.*;
 
 public abstract class Usuario {
-    String nombre;
-    String pass;
-    ManejadorInventario manejadorInventario;
-    ManejadorCatalogoProducto manejadorCatalogoProducto;
+    private String nombre;
+    private String pass;
+    private ManejadorInventario manejadorInventario;
+    private ManejadorCatalogoProducto manejadorCatalogoProducto;
     
     public String getNombre(){return null;}
     public String getPass(){return null;}

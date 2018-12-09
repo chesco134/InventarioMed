@@ -112,8 +112,10 @@ public class OperadorFrame extends javax.swing.JFrame {
         cantidadProducto.setText("Ingrese la cantidad");
 
         tamanioEstante.setEditable(false);
+        tamanioEstante.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         tamanioRestanteEstante.setEditable(false);
+        tamanioRestanteEstante.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel1.setText("Tamaño total del estante");
 
@@ -193,8 +195,10 @@ public class OperadorFrame extends javax.swing.JFrame {
         cantidadProducto1.setText("Ingrese la cantidad");
 
         tamanioEstante1.setEditable(false);
+        tamanioEstante1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         tamanioRestanteEstante1.setEditable(false);
+        tamanioRestanteEstante1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel3.setText("Tamaño total del estante");
 

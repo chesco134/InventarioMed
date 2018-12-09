@@ -68,8 +68,6 @@ public class OperadorFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(0, 0));
-        setPreferredSize(new java.awt.Dimension(550, 430));
         setResizable(false);
 
         panelDerecha.setPreferredSize(new java.awt.Dimension(390, 410));
@@ -298,7 +296,7 @@ public class OperadorFrame extends javax.swing.JFrame {
             .addGroup(panelIzquierdaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelIzquierdaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                    .addComponent(cerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 123, Short.MAX_VALUE)
                     .addComponent(eliminarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(agregarProductos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())

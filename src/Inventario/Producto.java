@@ -68,7 +68,8 @@ public abstract class Producto {
     }
     
     public abstract String serializa();
-    
-    // Lo necesitas sobreescribir
-    public static Producto deserializa(String linea){return null;}
+    public static Producto deserializa(String line){
+        Producto producto = Medicamento.deserializa(line);
+        return producto == null ? MaterialDeCuracion.deserializa(line) : producto;
+    }
 }

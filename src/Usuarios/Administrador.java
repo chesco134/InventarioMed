@@ -12,6 +12,10 @@ package Usuarios;
 
 import java.util.ArrayList;
 import Inventario.*;
+import org.json.JSONObject;
+import org.json.JSONException;
+import GUI.MainFrame;
+import GUI.AdministradorFrame;
 
 public class Administrador extends Usuario{
 
@@ -24,4 +28,24 @@ public class Administrador extends Usuario{
     public void agregarProductoCatalogo(Producto producto){}
     public void quitarProductoCatalogo(Producto producto){}
     public void quitarProductoCatalogo(String nombre){}
+
+    @Override
+    public String serializa() {
+        try {
+            JSONObject json = new JSONObject();
+            json.put("nombreUsuario", getNombre());
+            json.put("Pass", getPass());
+            json.put("Tipo_Usuario", "Administrador");
+            return json.toString();
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    @Override
+    public void lanzarFrame() {
+        
+    }
+
+
 }

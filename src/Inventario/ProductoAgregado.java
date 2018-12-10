@@ -5,6 +5,11 @@
  */
 package Inventario;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  *
  * @author copec
@@ -13,7 +18,10 @@ public class ProductoAgregado implements Serializa{
     private Producto producto;
     private String nombreOperador;
     
-    public ProductoAgregado(Producto producto, String nombreOperador){}
+    public ProductoAgregado(Producto producto, String nombreOperador){
+        this.producto = producto;
+        this.nombreOperador = nombreOperador;
+    }
 
     public Producto getProducto() {
         return producto;
@@ -35,6 +43,21 @@ public class ProductoAgregado implements Serializa{
 
     @Override
     public String serializa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            JSONObject jProductoAgregado = new JSONObject();
+            jProductoAgregado.put("nombreOperador", getNombreOperador());
+            jProductoAgregado.put("producto", getProducto().serializa());
+            return jProductoAgregado.toString();
+        }catch(JSONException e){
+            return null;
+        }
+    }
+    public static ProductoAgregado deserializa(String line){
+        try {
+            JSONObject json = new JSONObject(line);
+            return new ProductoAgregado(Producto.deserializa(json.getString("producto")),json.getString("nombreOperador"));
+        } catch (JSONException ex) {
+            return null;
+        }
     }
 }

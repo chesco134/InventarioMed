@@ -6,6 +6,9 @@
 package Inventario;
 
 import java.util.ArrayList;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -48,11 +51,35 @@ public class Slot implements Serializa{
     public void setReceptorDeMaterial(String receptorDeMaterial) {
         this.receptorDeMaterial = receptorDeMaterial;
     }
-    
-    public Slot creaSlot(String linea){return null;}
 
     @Override
     public String serializa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            JSONObject jSlot = new JSONObject();
+            jSlot.put("index", getIndex());
+            jSlot.put("espacio", getEspacio());
+            JSONArray jProductosAgregados = new JSONArray();
+            productos.forEach((productoAgregado) -> {
+                jProductosAgregados.put(productoAgregado.serializa());
+            });
+            jSlot.put("productosAgregados",jProductosAgregados);
+            return jSlot.toString();
+        }catch(JSONException e){return null;}
+    }
+    public static Slot deserializa(String linea){
+        try{
+            JSONObject json = new JSONObject(linea);
+            Slot slot = new Slot();
+            slot.setEspacio(json.getInt("espacio"));
+            slot.setIndex(json.getInt("index"));
+            java.util.ArrayList<ProductoAgregado> productos;
+            productos = new java.util.ArrayList<>();
+            JSONArray jProductosAgregados = json.getJSONArray("productosAgregados");
+            for(int i = 0; i<=jProductosAgregados.length(); i++){
+                productos.add(ProductoAgregado.deserializa(jProductosAgregados.getString(i)));
+            }
+            slot.setProductos(productos);
+            return slot;
+        }catch(JSONException e){return null;}
     }
 }

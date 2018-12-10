@@ -350,11 +350,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void RegistraruserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistraruserActionPerformed
         int result = JOptionPane.showConfirmDialog(null, "Esta seguro?", "InfoBox: " + "confirmar", JOptionPane.OK_CANCEL_OPTION);
-       if(result == JOptionPane.OK_OPTION){
-       registrar();
-       usersManager.jajatl();
-       System.out.println((typesOfUsers.getSelectedIndex()+1));
-       }
+        if(result == JOptionPane.OK_OPTION){
+            registrar();
+            usersManager.jajatl();
+            System.out.println((typesOfUsers.getSelectedIndex()+1));
+        }
     }//GEN-LAST:event_RegistraruserActionPerformed
 
     /**
@@ -397,12 +397,12 @@ public class MainFrame extends javax.swing.JFrame {
         if(userNameTextField.getText().equals("") || passField.getText().equals("") || repeatPassField.getText().equals("")){
             JOptionPane.showMessageDialog(this, "No se pueden dejar campos en blanco.", "Error en campos", JOptionPane.ERROR_MESSAGE);
         }else{
-        jajatl = usersManager.validarUsuario(userNameTextField.getText(), passField.getText());
-        if(jajatl){
-           JOptionPane.showMessageDialog(this, "Nombre de usuario ya está en uso.", "Error nombre de Usuario", JOptionPane.ERROR_MESSAGE);
-        }else{
-            usersManager.agregarUsuario(userNameTextField.getText(), passField.getText(), (typesOfUsers.getSelectedIndex()+1));
-            JOptionPane.showMessageDialog(this, "Usuario creado satisfactoriamente", "Usuario creado", JOptionPane.INFORMATION_MESSAGE);
+            jajatl = usersManager.validarUsuario(userNameTextField.getText(), passField.getText());
+            if(jajatl){
+               JOptionPane.showMessageDialog(this, "Nombre de usuario ya está en uso.", "Error nombre de Usuario", JOptionPane.ERROR_MESSAGE);
+            }else{
+                usersManager.agregarUsuario(userNameTextField.getText(), passField.getText(), (typesOfUsers.getSelectedIndex()+1));
+                JOptionPane.showMessageDialog(this, "Usuario creado satisfactoriamente", "Usuario creado", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }

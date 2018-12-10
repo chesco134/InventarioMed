@@ -11,6 +11,8 @@ package Usuarios;
  */
 
 import Inventario.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Operador extends Usuario{
 
@@ -22,4 +24,17 @@ public class Operador extends Usuario{
     public void quitarProductoEstante(String nombreProducto, Estante estante){}
     public void quitarProductoEstante(ProductoAgregado productoAgregado, Estante estante){}
     public void guardaInventario(){}
+
+    @Override
+    public String serializa() {
+        try {
+            JSONObject json = new JSONObject();
+            json.put("nombreUsuario", getNombre());
+            json.put("Pass", getPass());
+            json.put("Tipo_Usuario", "Operador");
+            return json.toString();
+        } catch (JSONException e) {
+            return null;
+        }
+    }
 }

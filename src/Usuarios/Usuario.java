@@ -11,6 +11,8 @@ package Usuarios;
  */
 
 import Managers.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public abstract class Usuario {
     private String nombre;
@@ -22,5 +24,20 @@ public abstract class Usuario {
     public String getPass(){return null;}
     public Usuario(String nombre, String pass){}
     public abstract String serializa();
-    public abstract Usuario deserializa();
+    
+    public static Usuario deserializa(String line){
+        try{
+            JSONObject json = new JSONObject(line);
+            switch(json.getString("Tipo_Usuario")){
+                case "Administrador":
+                    return new Administrador(json.getString("nombreUsuario"), json.getString("Pass"));
+                case "Operador":
+                    return new Operador(json.getString("nombreUsuario"), json.getString("Pass"));
+                case "Consultor":
+                    return new Consultor(json.getString("nombreUsuario"), json.getString("Pass"));
+            }
+        }catch(JSONException e){
+        }
+        return null;
+    }
 }

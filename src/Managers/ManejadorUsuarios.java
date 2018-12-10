@@ -11,11 +11,19 @@ package Managers;
  */
 public class ManejadorUsuarios {
     private java.util.ArrayList<Usuarios.Usuario> usuarios;
-    private ManejadorArchivo manejadorArchivo;
+    private ManejadorArchivo manejadorArchivo = new ManejadorArchivo("Usuarios",true);
+    
+    public ManejadorUsuarios(){
+        usuarios = new java.util.ArrayList<Usuarios.Usuario>();
+    }
     
     public boolean validarUsuario(Usuarios.Usuario usuario){return true;}
     public Usuarios.Usuario  agregarUsuario(Usuarios.Usuario usuario){return null;}
     public Usuarios.Usuario  quitarUsuario(Usuarios.Usuario usuario){return null;}
-    public void guardaUsuario(){}
+    public void guardaUsuario(){
+        for(Usuarios.Usuario usuario : usuarios){
+            manejadorArchivo.escribeLinea(usuario.serializa());
+        }
+    }
     public java.util.ArrayList<Usuarios.Usuario> cargaUsuarios(){return null;}
 }

@@ -6,6 +6,11 @@
 package Inventario;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  *
@@ -32,10 +37,36 @@ public class Inventario implements Serializa{
     }
     
     public void obtenerEstantesConEspacioLibre(){}
-    public Inventario crearInventario(String linea){return null;}
+    
 
     @Override
     public String serializa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            JSONObject jInventario = new JSONObject();
+            jInventario.put("direccion", getDireccion());
+            JSONArray jEstantes = new JSONArray();
+            estantes.forEach((estante)->{
+                jEstantes.put(estante.serializa());
+            });
+            jInventario.put("estantes", jEstantes);
+            return jInventario.toString();
+        }catch(JSONException e){return null;}
+    }
+    public static Inventario crearInventario(String linea){
+        try {
+            JSONObject json = new JSONObject(linea);
+            Inventario inv = new Inventario();
+            inv.setDireccion(json.getString("direccion"));
+            java.util.ArrayList<Estante> estantes;
+            estantes = new java.util.ArrayList<>();
+            JSONArray jEstantes = json.getJSONArray("estantes");
+            for(int i = 0; i <= jEstantes.length(); i++){
+                estantes.add(Estante.deserializa(jEstantes.getString(i)));
+            }
+            inv.setEstantes(estantes);
+            return inv;
+        } catch (JSONException ex) {
+            return null;
+        }
     }
 }

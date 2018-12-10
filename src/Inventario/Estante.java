@@ -6,7 +6,11 @@
 package Inventario;
 
 import java.util.ArrayList;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
 /**
  *
  * @author copec
@@ -43,11 +47,40 @@ public class Estante implements Serializa{
     public Estante(String nombre, int cantidadSlots){}
     public Estante(String nombre, java.util.ArrayList<Slot> slots){}
     public Estante(String nombre, int cantidadSlots, int espacioPorSlot){}
+    public Estante(){}
     public boolean agregarProducto(ProductoAgregado producto){return false;}
-    public Estante crearEstante(String linea){return null;}
 
     @Override
     public String serializa() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            JSONObject json = new JSONObject();
+            json.put("nombreEstante", getNombre());
+            json.put("descripcion", "jajajajtl");
+            JSONArray jSlots = new JSONArray();
+            for(Slot slot : slots){
+                jSlots.put(slot.serializa());
+            }
+            json.put("slots", jSlots);
+            return json.toString();
+        }catch(JSONException e){return null;}
+    }
+    
+    public static Estante deserializa(String linea){
+        try {
+            JSONObject json = new JSONObject(linea);
+            Estante estante = new Estante();
+            estante.setDescripcion(json.getString("descripcion"));
+            estante.setNombre(json.getString("nombreEstante"));
+            java.util.ArrayList<Slot> slots;
+            slots = new java.util.ArrayList<>();
+            JSONArray jSlots = json.getJSONArray("slots");
+            for(int i = 0; i <= jSlots.length(); i++){
+                slots.add(Slot.deserializa(jSlots.getString(i)));
+            }
+            estante.setSlots(slots);
+            return estante;
+        } catch (JSONException ex) {
+            return null;
+        }
     }
 }

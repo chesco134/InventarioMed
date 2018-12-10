@@ -9,7 +9,7 @@ package Inventario;
  *
  * @author copec
  */
-public class Dimension {
+public class Dimension{
     private String nombre;
     private int dimension;
 
@@ -29,5 +29,9 @@ public class Dimension {
         this.dimension = dimension;
     }
     
+    public Dimension(String nombre, int dimension){
+    this.nombre = nombre;
+    this.dimension = dimension;
+    }
     
 }

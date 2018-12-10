@@ -20,8 +20,8 @@ public abstract class Usuario {
     private ManejadorInventario manejadorInventario;
     private ManejadorCatalogoProducto manejadorCatalogoProducto;
     
-    public String getNombre(){return null;}
-    public String getPass(){return null;}
+    public String getNombre(){return nombre;}
+    public String getPass(){return pass;}
     public Usuario(String nombre, String pass){
     this.nombre = nombre;
     this.pass = pass;

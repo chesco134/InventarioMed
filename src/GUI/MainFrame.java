@@ -352,8 +352,7 @@ public class MainFrame extends javax.swing.JFrame {
         int result = JOptionPane.showConfirmDialog(null, "Esta seguro?", "InfoBox: " + "confirmar", JOptionPane.OK_CANCEL_OPTION);
        if(result == JOptionPane.OK_OPTION){
        registrar();
-       usersManager.jajatl();
-       System.out.println((typesOfUsers.getSelectedIndex()+1));
+       usersManager.guardaUsuario();
        }
     }//GEN-LAST:event_RegistraruserActionPerformed
 
@@ -396,6 +395,8 @@ public class MainFrame extends javax.swing.JFrame {
         boolean jajatl;
         if(userNameTextField.getText().equals("") || passField.getText().equals("") || repeatPassField.getText().equals("")){
             JOptionPane.showMessageDialog(this, "No se pueden dejar campos en blanco.", "Error en campos", JOptionPane.ERROR_MESSAGE);
+        }if(!(passField.getText().equals(repeatPassField.getText()))){
+        JOptionPane.showMessageDialog(this, "Contraseñas discrepantes.", "Error contraseñas", JOptionPane.ERROR_MESSAGE);
         }else{
         jajatl = usersManager.validarUsuario(userNameTextField.getText(), passField.getText());
         if(jajatl){

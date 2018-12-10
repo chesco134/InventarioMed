@@ -5,6 +5,8 @@
  */
 package Inventario;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,7 +35,7 @@ public class Medicamento extends Producto{
             json.put("especificaicon", getEspecificacion());
             json.put("unidadDeMedida", getUnidadMedida());
             json.put("dimension", getDimension());
-            json.put("fechaCaducidad", getFechaCaducidad());
+            json.put("fechaCaducidad", convertDateToString(getFechaCaducidad()));
             return json.toString();
         }catch(JSONException e){return null;}
     }
@@ -44,7 +46,7 @@ public class Medicamento extends Producto{
             materialDeCuracion.setClasificacion(json.getString("especificacion"));
             materialDeCuracion.setDescripcion(json.getString("descripcion"));
             materialDeCuracion.setDimension(new Dimension(json.getString("nombreTamaño"),json.getInt("TamañoEnNumero")));
-            materialDeCuracion.setFechaCaducidad((json.getString("FechaCaducidad")));
+            materialDeCuracion.setFechaCaducidad(convertToDate(json.getString("FechaCaducidad")));
             materialDeCuracion.setPrecio(json.getLong("precio"));
             materialDeCuracion.setUnidadMedida(json.getString("UnidadDeMedida"));
             materialDeCuracion.setNombre(json.getString("NombreProducto"));
@@ -53,5 +55,17 @@ public class Medicamento extends Producto{
             e.printStackTrace();
             return null;
         }
+    }
+    
+    private static java.util.Date convertToDate(String date){
+        try {
+            return new SimpleDateFormat("dd/mm/yyyy").parse(date);
+        } catch (ParseException ex) {
+            return null;
+        }
+    }
+    
+    private String convertDateToString(java.util.Date date){
+        return new SimpleDateFormat("dd/mm/yyyy").format(date);
     }
 }

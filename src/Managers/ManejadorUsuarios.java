@@ -69,13 +69,4 @@ public class ManejadorUsuarios {
         manejadorArchivo.cerrarArchivo();
         return usuarios;
     }
-    
-    public void jajatl(){
-        if(usuarios.isEmpty()){
-            System.out.println("no hay nada");
-        }
-        for(Usuarios.Usuario user : usuarios){
-            System.out.println(user.getNombre()+ " " + user.getPass());
-        }
-    }
 }

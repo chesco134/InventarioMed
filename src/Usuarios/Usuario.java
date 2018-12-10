@@ -22,8 +22,12 @@ public abstract class Usuario {
     
     public String getNombre(){return null;}
     public String getPass(){return null;}
-    public Usuario(String nombre, String pass){}
+    public Usuario(String nombre, String pass){
+    this.nombre = nombre;
+    this.pass = pass;
+    }
     public abstract String serializa();
+    public abstract void lanzarFrame();
     
     public static Usuario deserializa(String line){
         try{

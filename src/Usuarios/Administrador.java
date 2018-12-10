@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import Inventario.*;
 import org.json.JSONObject;
 import org.json.JSONException;
+import GUI.MainFrame;
+import GUI.AdministradorFrame;
 
 public class Administrador extends Usuario{
 
@@ -38,6 +40,11 @@ public class Administrador extends Usuario{
         } catch (JSONException e) {
             return null;
         }
+    }
+
+    @Override
+    public void lanzarFrame() {
+        
     }
 
 

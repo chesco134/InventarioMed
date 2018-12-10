@@ -26,24 +26,26 @@ public class ManejadorArchivo {
     public ManejadorArchivo(String nombreArchivo, boolean concatenar){
         archivo = new File(nombreArchivo);
         try{
-        pw = new PrintWriter(new java.io.FileWriter(archivo, concatenar));
-        br = new BufferedReader(new java.io.FileReader(archivo));
+            pw = new PrintWriter(new java.io.FileWriter(archivo, concatenar));
+            br = new BufferedReader(new java.io.FileReader(archivo));
         }catch(IOException e){}
     }
     
     public void escribeLinea(String linea){
-            pw.println(linea);
+        pw.println(linea);
     }
+    
     public String leerLinea(){
         try{
-        br.readLine();
-        return br.readLine();
+            br.readLine();
+            return br.readLine();
         }catch(IOException e){return null;}
     }
     
     public void cerrarArchivo(){
-    pw.close();
+        pw.close();
     }
+    
     public void cerrarBr(){
         try{br.close();}catch(IOException e){}
     }

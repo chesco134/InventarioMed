@@ -7,6 +7,8 @@ package Usuarios;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import GUI.MainFrame;
+import GUI.ConsultorFrame;
 
 /**
  *
@@ -31,5 +33,10 @@ public class Consultor extends Usuario{
         } catch (JSONException e) {
             return null;
         }
+    }
+
+    @Override
+    public void lanzarFrame() {
+        
     }
 }

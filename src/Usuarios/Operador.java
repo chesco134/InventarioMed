@@ -13,6 +13,8 @@ package Usuarios;
 import Inventario.*;
 import org.json.JSONException;
 import org.json.JSONObject;
+import GUI.MainFrame;
+import GUI.ConsultorFrame;
 
 public class Operador extends Usuario{
 
@@ -36,5 +38,10 @@ public class Operador extends Usuario{
         } catch (JSONException e) {
             return null;
         }
+    }
+
+    @Override
+    public void lanzarFrame() {
+        
     }
 }

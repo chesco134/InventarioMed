@@ -5,25 +5,71 @@
  */
 package Managers;
 
+import Usuarios.*;
 /**
  *
  * @author copec
  */
 public class ManejadorUsuarios {
     private java.util.ArrayList<Usuarios.Usuario> usuarios;
-    private ManejadorArchivo manejadorArchivo = new ManejadorArchivo("Usuarios",true);
+    private ManejadorArchivo manejadorArchivo;
     
     public ManejadorUsuarios(){
-        usuarios = new java.util.ArrayList<Usuarios.Usuario>();
+        usuarios = new java.util.ArrayList<>();
     }
     
-    public boolean validarUsuario(Usuarios.Usuario usuario){return true;}
-    public Usuarios.Usuario  agregarUsuario(Usuarios.Usuario usuario){return null;}
-    public Usuarios.Usuario  quitarUsuario(Usuarios.Usuario usuario){return null;}
+    public boolean validarUsuario(String name, String pass){
+        boolean aux = false;
+        if(usuarios.isEmpty()){return aux;}else{
+        for(Usuarios.Usuario user : usuarios){
+            if(user.getNombre().equals(name)){
+                aux = true;
+                return aux;
+            }else{
+        aux = false;
+            }
+        }
+        }return aux;
+    }
+    public void agregarUsuario(String name, String pass, int who){
+        switch(who){
+            case 3:
+                Administrador usuario = new Administrador(name, pass);
+                usuarios.add(usuario);
+            case 1:
+                Operador usuarioOp = new Operador(name, pass);
+                usuarios.add(usuarioOp);
+            case 2:
+                Consultor usuarioCo = new Consultor(name,pass);
+                usuarios.add(usuarioCo);
+        }
+    }
+    public Usuarios.Usuario quitarUsuario(Usuarios.Usuario usuario){return usuario;}
     public void guardaUsuario(){
+         manejadorArchivo = new ManejadorArchivo("Usuarios",true);
         for(Usuarios.Usuario usuario : usuarios){
             manejadorArchivo.escribeLinea(usuario.serializa());
         }
+        manejadorArchivo.cerrarArchivo();
     }
-    public java.util.ArrayList<Usuarios.Usuario> cargaUsuarios(){return null;}
+    public java.util.ArrayList<Usuarios.Usuario> cargaUsuarios(){
+        String line;
+        Usuarios.Usuario usuario;
+         manejadorArchivo = new ManejadorArchivo("Usuarios",true);
+        while((line = manejadorArchivo.leerLinea()) != null){
+            if((usuario = Usuarios.Usuario.deserializa(line)) != null){
+                usuarios.add(usuario);
+            }
+        }
+        manejadorArchivo.cerrarArchivo();
+        return usuarios;
+    }
+    public void jajatl(){
+        if(usuarios.isEmpty()){
+            System.out.println("no hay nada");
+        }
+        for(Usuarios.Usuario user : usuarios){
+            System.out.println(user.getNombre()+ " " + user.getPass());
+        }
+    }
 }

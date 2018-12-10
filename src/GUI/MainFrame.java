@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI;
 
 import javax.swing.JOptionPane;
+import Managers.*;
 
 /**
  *
@@ -13,11 +9,13 @@ import javax.swing.JOptionPane;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    ManejadorUsuarios usersManager;
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        usersManager = new ManejadorUsuarios();
     }
 
     /**
@@ -53,6 +51,7 @@ public class MainFrame extends javax.swing.JFrame {
         passField = new javax.swing.JPasswordField();
         repeatPassField = new javax.swing.JPasswordField();
         typesOfUsers = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
         Botones = new javax.swing.JPanel();
         login = new javax.swing.JButton();
         register = new javax.swing.JButton();
@@ -60,7 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(530, 410));
-        setPreferredSize(new java.awt.Dimension(530, 410));
+        setPreferredSize(new java.awt.Dimension(550, 430));
         setResizable(false);
 
         Bienvenida.setPreferredSize(new java.awt.Dimension(1000, 100));
@@ -178,6 +177,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         Registraruser.setText("Registrar usuario");
+        Registraruser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistraruserActionPerformed(evt);
+            }
+        });
 
         userName.setText("Nombre de usuario");
 
@@ -186,6 +190,8 @@ public class MainFrame extends javax.swing.JFrame {
         repeatPass.setText("Repetir contraseña");
 
         typesOfUsers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Operador", "Consultor", "Administrador" }));
+
+        jLabel1.setText("Tipo de usuario");
 
         javax.swing.GroupLayout RegistrationPanelLayout = new javax.swing.GroupLayout(RegistrationPanel);
         RegistrationPanel.setLayout(RegistrationPanelLayout);
@@ -210,7 +216,8 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(userNameTextField)
                                 .addComponent(passField)
                                 .addComponent(repeatPassField, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
-                            .addComponent(Registraruser)))
+                            .addComponent(Registraruser)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addComponent(IniciaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -232,11 +239,13 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(repeatPass)
                     .addComponent(repeatPassField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(typesOfUsers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(21, 21, 21)
+                .addGroup(RegistrationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IniciaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Registraruser))
-                .addGap(18, 18, 18)
-                .addComponent(IniciaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -339,6 +348,15 @@ public class MainFrame extends javax.swing.JFrame {
         Centro.revalidate();
     }//GEN-LAST:event_IniciaSesionActionPerformed
 
+    private void RegistraruserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistraruserActionPerformed
+        int result = JOptionPane.showConfirmDialog(null, "Esta seguro?", "InfoBox: " + "confirmar", JOptionPane.OK_CANCEL_OPTION);
+       if(result == JOptionPane.OK_OPTION){
+       registrar();
+       usersManager.jajatl();
+       System.out.println((typesOfUsers.getSelectedIndex()+1));
+       }
+    }//GEN-LAST:event_RegistraruserActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -374,6 +392,21 @@ public class MainFrame extends javax.swing.JFrame {
         });
     }
 
+    public void registrar(){
+        boolean jajatl;
+        if(userNameTextField.getText().equals("") || passField.getText().equals("") || repeatPassField.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "No se pueden dejar campos en blanco.", "Error en campos", JOptionPane.ERROR_MESSAGE);
+        }else{
+        jajatl = usersManager.validarUsuario(userNameTextField.getText(), passField.getText());
+        if(jajatl){
+           JOptionPane.showMessageDialog(this, "Nombre de usuario ya está en uso.", "Error nombre de Usuario", JOptionPane.ERROR_MESSAGE);
+        }else{
+            usersManager.agregarUsuario(userNameTextField.getText(), passField.getText(), (typesOfUsers.getSelectedIndex()+1));
+            JOptionPane.showMessageDialog(this, "Usuario creado satisfactoriamente", "Usuario creado", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Bienvenida;
     private javax.swing.JPanel Botones;
@@ -385,6 +418,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton exit;
     private javax.swing.JButton iniciarSesion;
     private javax.swing.JLabel inicioSesion;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton login;
     private javax.swing.JPanel loginPanel;

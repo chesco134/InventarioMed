@@ -8,11 +8,17 @@ import Inventario.CatalogoProducto;
  */
 public class ManejadorCatalogoProducto {
     CatalogoProducto catalogoProducto;
-    ManejadorArchivo manejadorArchivo = new ManejadorArchivo("catalogoProducto", false);
+    ManejadorArchivo manejadorArchivo;
     
     public void guardaProductos(){
+        manejadorArchivo = new ManejadorArchivo("Usuarios",true);
         manejadorArchivo.escribeLinea(catalogoProducto.serializa());
+        manejadorArchivo.cerrarArchivo();
     }
-    public void cargaProductos(){}
+    public void cargaProductos(){
+        manejadorArchivo = new ManejadorArchivo("Usuarios",true);
+        catalogoProducto = CatalogoProducto.deserealiza(manejadorArchivo.leerLinea());
+        manejadorArchivo.cerrarArchivo();
+    }
     public CatalogoProducto obtenerCatalogoProductos(){return null;}
 }
